@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Lista Locales de Comida{% endblock %}
+{% block description %}Mostar una lista de locales de comida registrado en el sistema{% endblock %}
+
+
+{% block content %}
+
+
+<a href="{% url 'LocalesComida_create' %}" class="button primary my-2">Crear un local</a>
+
+<table id="tabla_datos" class="table">
+
+    <thead>
+    <tr>
+        <td>Propietario</td>
+        <td>Direccion</td>
+        <td>Barrio</td>
+        <td>Comida tipo</td>
+        <td>Ventas proyectadas</td>
+        <td>Permiso</td>
+        <td>opciones</td>
+    </tr>
+    </thead>
+
+    {% for i in object_list %}
+    <tr>
+        <td>{{i.propietario.nombre}} {{i.propietario.apellido}}</td>
+        <td>{{i.direccion}}</td>
+        <td>{{i.barrio.nombre}}</td>
+        <td>{{i.comida_tipo}}</td>
+        <td>{{i.ventas_proyectadas}}</td>
+        <td>{{i.permiso}}</td>
+    <td>
+        <a href="{% url 'LocalesComida_edit' i.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+        <a href="{% url 'eliminar_local_comida' i.id %}"
+           onclick="return confirm('¿Está seguro de la eliminación?')">
+            <i class="fa-solid fa-trash"></i></a>
+    </td>
+    </tr>
+    {% endfor %}
+
+
+</table>
+
+{% endblock %}

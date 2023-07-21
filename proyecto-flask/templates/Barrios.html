@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>barrios</title>
+  </head>
+  <body>
+<div style="margin: 10px">
+
+  <a href="/locales_repuestos">locales_repuestos</a>
+  <a href="/barrios">barrios</a>
+  <a href="/">locales_comida</a>
+  <a href="/personas">personas</a>
+</div>
+  <br>
+
+    <h5>Listado de barrios </h5>
+
+    {% for e in data %}
+
+    <ol>
+      <li><b>Nombre: </b>{{e['nombre']}}</li>
+      <li><b>Siglas: </b>{{e['siglas']}}</li>
+    </ol>
+    <hr>
+    {% endfor%}
+  </body>
+</html>

@@ -20,7 +20,10 @@ class LocalesComida(models.Model):
     barrio = models.ForeignKey(Barrio, on_delete=models.CASCADE)
     comida_tipo = models.CharField(max_length=500, )
     ventas_proyectadas = models.IntegerField()
-    permiso = models.FloatField()
+    permiso = models.FloatField(null=True, blank=True)
+    def save(self):
+        self.permiso =self.ventas_proyectadas * 0.8
+        return super(LocalesComida, self).save()
 
 
 class LocalesRepuestos(models.Model):
@@ -29,5 +32,9 @@ class LocalesRepuestos(models.Model):
     barrio = models.ForeignKey(Barrio, on_delete = models.CASCADE)
     valor_mecaderia = models.FloatField()
     comida_tipo = models.CharField(max_length= 50)
-    ventas_proyectadas = models.CharField(verbose_name = "ventas_proyectadas",max_length=200)
-    permiso = models.FloatField()
+    ventas_proyectadas = models.FloatField()
+    permiso = models.FloatField(null=True, blank=True)
+
+    def save(self):
+        self.permiso = self.ventas_proyectadas * 0.001
+        return super(LocalesRepuestos, self).save()
